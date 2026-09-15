@@ -15,8 +15,7 @@ const calorieInput = document.getElementById("calorie");
 let foods = JSON.parse(localStorage.getItem("foods")) || [];
 
 // ตั้งวันที่เป็นวันนี้
-// ตั้งวันที่เป็นวันนี้
-const today = new Date().toISOString().split("T")[0];
+const today = new Date().toLocaleDateString("sv-SE");
 dateInput.value = today;
 
 // แสดงวันที่ภาษาไทย
@@ -69,6 +68,9 @@ function addFood() {
 // โหลดข้อมูลรายวัน
 // =======================
 function loadDay(date) {
+
+  // โหลดข้อมูลล่าสุดจาก Local Storage
+  foods = JSON.parse(localStorage.getItem("foods")) || [];
 
   let proteinTotal = 0;
   let calorieTotal = 0;
@@ -270,4 +272,48 @@ function toggleMonthlySummary() {
     summary.style.display = "none";
     arrow.textContent = "▼";
   }
+}
+
+
+// =======================
+// ส่งออกข้อมูลเดือนที่เลือก
+// =======================
+function exportMonthData() {
+
+  const month = dateInput.value.slice(0, 7); // เช่น 2026-09
+
+  const monthFoods = foods.filter(item =>
+    item.date && item.date.startsWith(month)
+  );
+
+  if (monthFoods.length === 0) {
+    alert("📭 เดือนนี้ยังไม่มีข้อมูลให้ส่งออก");
+    return;
+  }
+
+  const backup = {
+    app: "Mook Fit Tracker",
+    version: "3.1",
+    month: month,
+    exportDate: new Date().toISOString(),
+    totalItems: monthFoods.length,
+    foods: monthFoods
+  };
+
+  const blob = new Blob(
+    [JSON.stringify(backup, null, 2)],
+    { type: "application/json" }
+  );
+
+  const link = document.createElement("a");
+  link.href = URL.createObjectURL(blob);
+  link.download = `mook-fit-${month}.json`;
+
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+
+  URL.revokeObjectURL(link.href);
+
+  alert(`✅ ส่งออกข้อมูลเดือน ${month} สำเร็จ!\n🍽️ ${monthFoods.length} รายการ`);
 }
