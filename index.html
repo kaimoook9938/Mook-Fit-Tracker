@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mook Fit Tracker 💚</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="card">
+
+  <h1>🥗 Mook Fit Tracker</h1>
+  <p class="subtitle">โปรตีนขั้นต่ำ 55g | แคลไม่เกิน 1300 kcal</p>
+
+  <label>📅 วันที่</label>
+  <input id="date" type="date">
+ <p id="thaiDate" style="margin-top:8px;color:#16A34A;font-weight:bold;"></p>
+
+  <label>🍽️ อาหาร</label>
+  <input id="food" placeholder="เช่น อกไก่ย่าง">
+
+  <label>💪 โปรตีน (กรัม)</label>
+  <input id="protein" type="number" placeholder="17">
+
+  <label>🔥 แคลอรี่ (kcal)</label>
+  <input id="calorie" type="number" placeholder="90">
+
+  <button class="addBtn" onclick="addFood()">➕ เพิ่มอาหาร</button>
+
+  <div class="summary">
+
+    <p><b>💪 โปรตีน</b></p>
+    <p><span id="proteinTotal">0</span> / 55 g</p>
+
+    <div class="progress">
+      <div id="proteinBar" class="bar"></div>
+    </div>
+
+    <p id="proteinStatus">เหลืออีก 55 g ถึงขั้นต่ำ</p>
+
+    <hr>
+
+    <p><b>🔥 แคลอรี่</b></p>
+    <p><span id="calorieTotal">0</span> / 1300 kcal</p>
+
+    <div class="progress">
+      <div id="calorieBar" class="bar"></div>
+    </div>
+
+    <p id="calorieStatus">เหลือกินได้อีก 1300 kcal</p>
+
+  </div>
+
+  <h3>📋 อาหารวันนี้</h3>
+  <ul id="foodList"></ul>
+
+  <button class="resetBtn" onclick="resetToday()">
+    🗑️ ล้างข้อมูลวันนี้
+  </button>
+
+<button class="addBtn" onclick="toggleMonthlySummary()">
+  📊 สรุปเดือนนี้ <span id="summaryArrow">▼</span>
+</button>
+
+<div id="monthlySummary" style="display:none;"></div>
+
+</div>
+
+<!-- โหลด JavaScript -->
+<script src="script.js"></script>
+
+</body>
+</html>
