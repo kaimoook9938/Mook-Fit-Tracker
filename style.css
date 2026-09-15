@@ -217,3 +217,17 @@ li{
     border-top:1px solid #DCFCE7;
     margin:16px 0;
 }
+.date-input {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+.container {
+  width: 100%;
+  padding: 20px;
+}
+input {
+  width: 100%;
+  padding: 16px;
+  border: 2px solid #ccc;
+}
