@@ -15,9 +15,12 @@
   <h1>🥗 Mook Fit Tracker</h1>
   <p class="subtitle">โปรตีนขั้นต่ำ 55g | แคลไม่เกิน 1300 kcal</p>
 
+ <div class="date-header">
   <label>📅 วันที่</label>
-  <input id="date" type="date">
- <p id="thaiDate" style="margin-top:8px;color:#16A34A;font-weight:bold;"></p>
+  <button class="todayBtn" onclick="goToday()">วันนี้</button>
+</div>
+
+<input id="date" type="date">
 
   <label>🍽️ อาหาร</label>
   <input id="food" placeholder="เช่น อกไก่ย่าง">
@@ -60,7 +63,7 @@
   <button class="resetBtn" onclick="resetToday()">
     🗑️ ล้างข้อมูลวันนี้
   </button>
-  
+
 <button class="exportBtn" onclick="exportMonthData()">
   📤 ส่งออกข้อมูลเดือนนี้
 </button>

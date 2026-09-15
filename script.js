@@ -14,15 +14,15 @@ const calorieInput = document.getElementById("calorie");
 // โหลดข้อมูลทั้งหมดจาก Local Storage
 let foods = JSON.parse(localStorage.getItem("foods")) || [];
 
-// ตั้งวันที่เป็นวันนี้
+
+// วันที่ตามเวลาของเครื่อง (Thailand)
 const today = new Date().toLocaleDateString("sv-SE");
 dateInput.value = today;
 
 // แสดงวันที่ภาษาไทย
 updateThaiDate();
 
-// โหลดข้อมูลของวันนี้
-loadDay(today);
+
 // โหลดข้อมูลของวันนี้ตอนเปิดเว็บ
 loadDay(today);
 
@@ -316,4 +316,12 @@ function exportMonthData() {
   URL.revokeObjectURL(link.href);
 
   alert(`✅ ส่งออกข้อมูลเดือน ${month} สำเร็จ!\n🍽️ ${monthFoods.length} รายการ`);
+}
+
+function goToday() {
+  const today = new Date().toLocaleDateString("sv-SE");
+  dateInput.value = today;
+  updateThaiDate();
+  loadDay(today);
+  updateExportButton();
 }
